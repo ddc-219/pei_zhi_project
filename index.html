@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频展示</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <button class="start-btn" id="startBtn">你准备好了吗？</button>
+        <button class="replay-btn" id="replayBtn">再讲一遍</button>
+        <div class="video-grid" id="videoGrid">
+            <div class="video-item" >
+                <video src="./video/洗手.mp4" id="video1" muted loop></video>
+            </div>
+            <div class="video-item">
+                <video src="./video/玩手机.mp4" id="video2" muted loop></video>
+            </div>
+            <div class="video-item">
+                <video src="./video/睡觉.mp4" id="video3" muted loop></video>
+            </div>
+        </div>
+        <div class="action-buttons" id="actionButtons">
+            <button class="action-btn" onclick="handleAction('wash')">洗手</button>
+            <button class="action-btn" onclick="handleAction('play')">玩游戏</button>
+            <button class="action-btn" onclick="handleAction('sleep')">睡觉</button>
+        </div>
+        <video src="./video/儿童版-七步洗手法.mp4" id="video4" class="full-video" controls></video>
+    </div>
+
+    
+
+    
+
+    <audio id="introAudio" preload="auto">
+        <source src="./music/start/吃饭.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="video1Audio" preload="auto">
+        <source src="./music/洗手.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="video2Audio" preload="auto">
+        <source src="./music/玩手机.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="video3Audio" preload="auto">
+        <source src="./music/睡觉.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="video4Audio" preload="auto">
+        <source src="./music/出错时.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="correctAudio" preload="auto">
+        <source src="./music/end/真聪明，棒棒哒.mp3" type="audio/mpeg">
+    </audio>
+
+    
+
+    <script src="start.js"></script>
+</body>
+</html>

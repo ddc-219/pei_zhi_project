@@ -1,0 +1,379 @@
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.start-btn {
+    padding: 20px 40px;
+    font-size: 24px;
+    background: linear-gradient(45deg, #2196f3, #03a9f4);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+    margin: 20px 0;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+}
+
+.start-btn:active {
+    transform: translateY(1px);
+}
+
+.video-grid {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 30px 0;
+    position: relative;
+}
+
+.video-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    background: white;
+    padding: 15px;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.video-item:hover {
+    z-index: 2;
+}
+
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* 为每个视频项添加不同的悬停效果 */
+.video-item:nth-child(1):hover video {
+    transform: scale(2.5) translate(-20%, -20%);
+}
+
+.video-item:nth-child(2):hover video {
+    transform: scale(2.5) translate(0, -25%);
+}
+
+.video-item:nth-child(3):hover video {
+    transform: scale(2.5) translate(20%, -20%);
+}
+
+/* 添加连接线效果 */
+.video-item::before,
+.video-item::after {
+    content: '';
+    position: absolute;
+    background: rgba(33, 150, 243, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: -1;
+}
+
+.video-item::before {
+    width: 2px;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+
+.video-item::after {
+    width: 0;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+}
+
+.video-item:hover::before {
+    height: 200px;
+    opacity: 1;
+}
+
+.video-item:hover::after {
+    width: 200px;
+    opacity: 1;
+}
+
+/* 为每个视频项添加不同的连接线位置 */
+.video-item:nth-child(1):hover::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.video-item:nth-child(1):hover::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.video-item:nth-child(2):hover::before {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.video-item:nth-child(2):hover::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.video-item:nth-child(3):hover::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.video-item:nth-child(3):hover::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* 增强发光效果 */
+.video-item:hover {
+    box-shadow: 0 20px 40px rgba(33, 150, 243, 0.3);
+}
+
+.video-item:hover video {
+    box-shadow: 0 25px 50px rgba(33, 150, 243, 0.4);
+}
+
+.video-title {
+    display: none;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.video-item:hover .play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.play-icon::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 24px;
+    border-color: transparent transparent transparent #2196f3;
+    margin-left: 5px;
+}
+
+.full-video {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+}
+
+.full-video.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.replay-btn {
+    display: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    margin: 20px auto;
+}
+
+.replay-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.replay-btn:active {
+    transform: translateY(1px);
+}
+
+/* 添加装饰元素 */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* 添加响应式设计 */
+@media (max-width: 1024px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+}
+
+.action-buttons {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 15px 25px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.action-btn.correct {
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+}
+
+.action-btn.wrong {
+    background: linear-gradient(45deg, #f44336, #e91e63);
+}
+
+/* 撒花效果样式 */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    animation: fall 3s linear forwards;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 正确答案按钮的动画效果 */
+.correct {
+    animation: correctPulse 0.5s ease-in-out;
+    background-color: #4CAF50 !important;
+    color: white !important;
+    transform: scale(1.1);
+}
+
+@keyframes correctPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* 视频显示动画 */
+.video4.show {
+    animation: videoShow 0.5s ease-out;
+}
+
+@keyframes videoShow {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
